@@ -1,22 +1,22 @@
-import { HOME_URL } from "../constants/AppConstants";
-import { contactUsButton, homeButton, AuthenticationButton, signOutButton } from "../constants/locators/HomePageLocators";
+import { AppConstants } from "../constants/Constants";
+import { HomePageLocators } from "../constants/locators/HomePageLocators";
 
 export default class HomePage {
 
     static visitWebSite() {
         cy
-            .visit(HOME_URL)
+            .visit(AppConstants.HOME_URL)
 
         cy
-            .xpath(homeButton).should('be.visible')
-            .xpath(contactUsButton).should('be.visible')
+            .xpath(HomePageLocators.HOME_BUTTON).should('be.visible')
+            .xpath(HomePageLocators.CONTACT_US_BUTTON).should('be.visible')
         
         return this;
     }
 
     static goToHome() {
         cy
-            .xpath(homeButton).should('be.visible')
+            .xpath(HomePageLocators.HOME_BUTTON).should('be.visible')
             .click();
 
         return this;
@@ -24,7 +24,7 @@ export default class HomePage {
 
     static goToAuthentication() {
         cy
-            .xpath(AuthenticationButton).should('be.visible')
+            .xpath(HomePageLocators.AUTHENTICATION_BUTTON).should('be.visible')
             .click();
 
         return this;
@@ -32,11 +32,11 @@ export default class HomePage {
 
     static signOut() {
         cy
-            .xpath(signOutButton).should('be.visible')
+            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
             .click()
             .should('not.exist')
 
-            .xpath(AuthenticationButton).should('be.visible');
+            .xpath(HomePageLocators.AUTHENTICATION_BUTTON).should('be.visible');
 
         return this;
     }

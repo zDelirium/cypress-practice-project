@@ -1,5 +1,5 @@
-import { signInEmailTextField, signInPasswordTextField, signInButton} from "../constants/locators/AuthenticationPageLocators";
-import { signOutButton } from "../constants/locators/HomePageLocators";
+import { AuthenticationPageLocators } from "../constants/locators/AuthenticationPageLocators";
+import { HomePageLocators } from "../constants/locators/HomePageLocators";
 
 
 export default class AuthenticationPage {
@@ -7,7 +7,7 @@ export default class AuthenticationPage {
 
     static fillSignInEmail(email: string) {
         cy
-            .xpath(signInEmailTextField).should('be.visible').should('be.enabled')
+            .xpath(AuthenticationPageLocators.SIGN_IN_EMAIL_TEXT_FIELD).should('be.visible').should('be.enabled')
             .clear().type(email);
 
         return this;
@@ -15,7 +15,7 @@ export default class AuthenticationPage {
 
     static fillSignInPassword(password: string) {
         cy
-            .xpath(signInPasswordTextField).should('be.visible').should('be.enabled')
+            .xpath(AuthenticationPageLocators.SIGN_IN_PASSWORD_TEXT_FIELD).should('be.visible').should('be.enabled')
             .clear().type(password);
 
         return this;
@@ -23,7 +23,7 @@ export default class AuthenticationPage {
 
     static clickSignInButton() {
         cy
-            .xpath(signInButton).should('be.visible').should('be.enabled')
+            .xpath(AuthenticationPageLocators.SIGN_IN_BUTTON).should('be.visible').should('be.enabled')
             .click()
 
         return this;
@@ -31,7 +31,7 @@ export default class AuthenticationPage {
 
     static validateSuccessfulLogin() {
         cy
-            .xpath(signOutButton).should('be.visible')
+            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
 
         return this;
     }
