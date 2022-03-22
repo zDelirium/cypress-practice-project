@@ -1,5 +1,6 @@
 import { CredentialConstants } from "../../constants/Constants";
-import { UserInfo } from "../../utils/UserInfo";
+import RandomUserInfoUtils from "../../utils/RandomUserInfoUtils";
+import UserInfo from "../../utils/UserInfo";
 import AuthenticationWorkflow from "../../workflows/AuthenticationWorkflow";
 
 describe('Login', () => {
@@ -15,27 +16,26 @@ describe('Login', () => {
     });
 
     it('attempt login with a non-empty invalid email', function() {
-        AuthenticationWorkflow.loginWithNonEmptyInvalidEmail(CredentialConstants.INVALID_USER_EMAIL);
+        AuthenticationWorkflow.loginWithNonEmptyInvalidEmail(RandomUserInfoUtils.getInvalidEmail());
     });
 
     it('attempt login with valid email but empty password', function() {
-        AuthenticationWorkflow.loginWithValidEmailAndEmptyPassword(existingUser.getEmail());
+        AuthenticationWorkflow.loginWithValidEmailAndEmptyPassword(RandomUserInfoUtils.getValidEmail());
     });
 
     it('attempt login with valid email but non-empty invalid password', function() {
         AuthenticationWorkflow.loginWithValidEmailAndNonEmptyInvalidPassword(
-            existingUser.getEmail(), CredentialConstants.INVALID_USER_PASSWORD);
+            RandomUserInfoUtils.getValidEmail(), RandomUserInfoUtils.getInvalidPassword());
     });
 
     it('attempt login with valid email but valid wrong password', function() {
         AuthenticationWorkflow.loginWithValidEmailAndValidWrongPassword(
-            existingUser.getEmail(), CredentialConstants.WRONG_USER_PASSWORD);
+            existingUser.getEmail(), RandomUserInfoUtils.getValidPassword(existingUser.getPassword()));
     });
 
     it('login successfully with existing user email and password', function() {
         AuthenticationWorkflow.loginWithValidCredentials(
             existingUser.getEmail(), existingUser.getPassword());
     });
-
 
 })

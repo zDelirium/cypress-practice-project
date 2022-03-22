@@ -1,4 +1,4 @@
-export class UserInfo {
+export default class UserInfo {
     private email: string;
     private password: string;
     private firstName: string;

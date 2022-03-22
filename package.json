@@ -14,6 +14,7 @@
   "author": "Gia-Khang Ernest Nguyen",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0",
     "cypress": "^9.5.2",
     "cypress-xpath": "^1.6.2",
     "typescript": "^4.6.2"
