@@ -15,4 +15,60 @@ export default class AuthenticationWorkflow {
             .validateSuccessfulLogin();
     }
 
+    static loginWithEmptyEmail() {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .clickSignInButton()
+            .validateLoginWithEmptyEmailErrorMessage();
+    }
+
+    static loginWithNonEmptyInvalidEmail(invalidEmail: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .fillSignInEmail(invalidEmail)
+            .clickSignInButton()
+            .validateLoginWithNonEmptyInvalidEmailErrorMessage();
+    }
+
+    static loginWithValidEmailAndEmptyPassword(validEmail: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .fillSignInEmail(validEmail)
+            .clickSignInButton()
+            .validateLoginWithValidEmailAndEmptyPasswordErrorMessage();
+    }
+
+    static loginWithValidEmailAndNonEmptyInvalidPassword(validEmail: string, invalidPassword: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .fillSignInEmail(validEmail)
+            .fillSignInPassword(invalidPassword)
+            .clickSignInButton()
+            .validateLoginWithValidEmailAndNonEmptyInvalidPasswordErrorMessage();
+    }
+
+    static loginWithValidEmailAndValidWrongPassword(validEmail: string, wrongPassword: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .fillSignInEmail(validEmail)
+            .fillSignInPassword(wrongPassword)
+            .clickSignInButton()
+            .validateLoginWithValidEmailAndValidWrongPasswordErrorMessage();
+    }
+
 }
