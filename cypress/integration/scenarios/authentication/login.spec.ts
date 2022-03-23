@@ -1,9 +1,15 @@
 import RandomUserInfoUtils from "../../utils/RandomUserInfoUtils";
-import { existingUser } from "../../utils/UserUtils";
+import { getExistingUser } from "../../utils/UserUtils";
 import AuthenticationWorkflow from "../../workflows/AuthenticationWorkflow";
 
 describe('Login', () => {
  
+    let existingUser;
+
+    before('Set up global users', function() {
+        existingUser = getExistingUser();
+    }); 
+
     it('Attempt login with an empty email', function() {
         AuthenticationWorkflow.loginWithEmptyEmail();
     });
@@ -21,14 +27,13 @@ describe('Login', () => {
             RandomUserInfoUtils.getValidEmail(), RandomUserInfoUtils.getInvalidPassword());
     });
 
-    it('Attempt login with valid email but valid wrong password', function() {
+    it('Attempt login with valid existing email but valid wrong password', function() {
         AuthenticationWorkflow.loginWithValidEmailAndValidWrongPassword(
             existingUser.getEmail(), RandomUserInfoUtils.getValidPassword(existingUser.getPassword()));
     });
 
     it('Login successfully with existing user email and password', function() {
-        AuthenticationWorkflow.loginWithValidCredentials(
-            existingUser.getEmail(), existingUser.getPassword());
+        AuthenticationWorkflow.loginWithValidCredentials(existingUser);
     });
 
 })

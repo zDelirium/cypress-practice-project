@@ -7,6 +7,8 @@ export const AppConstants = {
 export const CredentialConstants = {
     EXISTING_USER_EMAIL : 'wl-manual@test.com',
     EXISTING_USER_PASSWORD : 'wishlist',
+    EXISTING_USER_FIRST_NAME : 'wishlist',
+    EXISTING_USER_LAST_NAME : 'test'
 } as const;
 
 export const RandomUserUtilsConstants = {

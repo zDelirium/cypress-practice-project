@@ -1,18 +1,19 @@
 import AuthenticationPage from "../page_objects/AuthenticationPage";
 import HomePage from "../page_objects/HomePage";
+import UserInfo from "../utils/UserInfo";
 
 export default class AuthenticationWorkflow {
 
-    static loginWithValidCredentials(email: string, password: string) {
+    static loginWithValidCredentials(existingUser: UserInfo) {
         HomePage
             .visitWebSite()
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(email)
-            .fillSignInPassword(password)
+            .fillSignInEmail(existingUser.getEmail())
+            .fillSignInPassword(existingUser.getPassword())
             .clickSignInButton()
-            .validateSuccessfulLogin();
+            .validateSuccessfulLogin(existingUser);
     }
 
     static loginWithEmptyEmail() {
