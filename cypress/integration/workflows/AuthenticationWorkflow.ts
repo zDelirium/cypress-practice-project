@@ -4,6 +4,34 @@ import UserInfo from "../utils/UserInfo";
 
 export default class AuthenticationWorkflow {
 
+    static createAccountWithInvalidEmail(invalidEmail: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        // Test with empty email
+        AuthenticationPage
+            .clickCreateAccountButton()
+            .validateCreateAccountWithInvalidEmailErrorMessage();
+        
+        // Test with non-empty invalid email
+        AuthenticationPage
+            .fillCreateAccountEmail(invalidEmail)
+            .clickCreateAccountButton()
+            .validateCreateAccountWithInvalidEmailErrorMessage();
+    }
+
+    static createAccountWithExistingUserEmail(existingUserEmail: string) {
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+        
+        AuthenticationPage
+            .fillCreateAccountEmail(existingUserEmail)
+            .clickCreateAccountButton()
+            .validateCreateAccountWithExistingUserEmailErrorMessage();
+    }
+
     static loginWithValidCredentials(existingUser: UserInfo) {
         HomePage
             .visitWebSite()
