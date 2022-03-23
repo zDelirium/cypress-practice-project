@@ -1,7 +1,4 @@
 import { AuthenticationPageLocators } from "../constants/locators/AuthenticationPageLocators";
-import { HomePageLocators } from "../constants/locators/HomePageLocators";
-import UserInfo from "../utils/UserInfo";
-
 
 export default class AuthenticationPage {    
     
@@ -25,18 +22,6 @@ export default class AuthenticationPage {
         cy
             .xpath(AuthenticationPageLocators.SIGN_IN_BUTTON).should('be.visible').should('be.enabled')
             .click()
-        
-        return this;
-    }
-    
-    static validateSuccessfulLogin(user: UserInfo) {
-        cy
-            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible');
-
-        cy
-            .xpath(HomePageLocators.MY_ACCOUNT_SIGNED_IN_BUTTON)
-            .should('be.visible')
-            .contains(user.getFirstName() + ' ' + user.getLastName());
         
         return this;
     }

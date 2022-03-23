@@ -12,8 +12,10 @@ export default class AuthenticationWorkflow {
         AuthenticationPage
             .fillSignInEmail(existingUser.getEmail())
             .fillSignInPassword(existingUser.getPassword())
-            .clickSignInButton()
-            .validateSuccessfulLogin(existingUser);
+            .clickSignInButton();
+        
+        HomePage
+            .validateUserIsLoggedIn(existingUser);
     }
 
     static loginWithEmptyEmail() {
@@ -86,7 +88,7 @@ export default class AuthenticationWorkflow {
         // Logout
         HomePage
             .clickSignOutButton()
-            .validateUserHasSignedOut();
+            .validateUserIsNotLoggedIn();
     }
 
 }
