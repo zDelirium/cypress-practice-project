@@ -30,12 +30,19 @@ export default class HomePage {
         return this;
     }
 
-    static signOut() {
+    static clickSignOutButton() {
         cy
             .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
             .click()
-            .should('not.exist')
 
+        return this;
+    }
+
+    static validateUserHasSignedOut() {
+        cy
+            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('not.exist');
+
+        cy    
             .xpath(HomePageLocators.AUTHENTICATION_BUTTON).should('be.visible');
 
         return this;

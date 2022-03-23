@@ -6,31 +6,31 @@ export default class AuthenticationPage {
     
     static fillSignInEmail(email: string) {
         cy
-        .xpath(AuthenticationPageLocators.SIGN_IN_EMAIL_TEXT_FIELD).should('be.visible').should('be.enabled')
-        .clear().type(email);
+            .xpath(AuthenticationPageLocators.SIGN_IN_EMAIL_TEXT_FIELD).should('be.visible').should('be.enabled')
+            .clear().type(email);
         
         return this;
     }
     
     static fillSignInPassword(password: string) {
         cy
-        .xpath(AuthenticationPageLocators.SIGN_IN_PASSWORD_TEXT_FIELD).should('be.visible').should('be.enabled')
-        .clear().type(password);
+            .xpath(AuthenticationPageLocators.SIGN_IN_PASSWORD_TEXT_FIELD).should('be.visible').should('be.enabled')
+            .clear().type(password);
         
         return this;
     }
     
     static clickSignInButton() {
         cy
-        .xpath(AuthenticationPageLocators.SIGN_IN_BUTTON).should('be.visible').should('be.enabled')
-        .click()
+            .xpath(AuthenticationPageLocators.SIGN_IN_BUTTON).should('be.visible').should('be.enabled')
+            .click()
         
         return this;
     }
     
     static validateSuccessfulLogin() {
         cy
-        .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
+            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible');
         
         return this;
     }
@@ -62,8 +62,8 @@ export default class AuthenticationPage {
     
     private static validateErrorMessage(errorMessageBoxLocator: string, errorMessage: string) : void {
         cy
-        .xpath(errorMessageBoxLocator)
-        .should('be.visible')
-        .should('contain.text', errorMessage);
+            .xpath(errorMessageBoxLocator)
+            .should('be.visible')
+            .should('contain.text', errorMessage);
     }
 }

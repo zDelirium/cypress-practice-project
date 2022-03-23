@@ -71,4 +71,21 @@ export default class AuthenticationWorkflow {
             .validateLoginWithValidEmailAndValidWrongPasswordErrorMessage();
     }
 
+    static logout(email: string, password: string) {
+        // Login
+        HomePage
+            .visitWebSite()
+            .goToAuthentication();
+
+        AuthenticationPage
+            .fillSignInEmail(email)
+            .fillSignInPassword(password)
+            .clickSignInButton();
+        
+        // Logout
+        HomePage
+            .clickSignOutButton()
+            .validateUserHasSignedOut();
+    }
+
 }
