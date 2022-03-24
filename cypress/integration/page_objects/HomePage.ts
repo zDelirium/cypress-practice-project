@@ -1,63 +1,46 @@
 import { AppConstants } from "../constants/Constants";
 import { HomePageLocators } from "../constants/locators/HomePageLocators";
 import UserInfo from "../utils/UserInfo";
+import BasePage from "./BasePage";
 
-export default class HomePage {
+export default class HomePage extends BasePage {
 
     static visitWebSite() {
         cy
-            .visit(AppConstants.HOME_URL)
+            .visit(AppConstants.HOME_URL);
 
-        cy
-            .xpath(HomePageLocators.HOME_BUTTON).should('be.visible')
-            .xpath(HomePageLocators.CONTACT_US_BUTTON).should('be.visible')
-        
+        this.expectElementToBeVisible(HomePageLocators.HOME_BUTTON);
         return this;
     }
 
     static goToHome() {
-        cy
-            .xpath(HomePageLocators.HOME_BUTTON).should('be.visible')
-            .click();
-
+        this.clickButton(HomePageLocators.HOME_BUTTON);
         return this;
     }
 
     static goToAuthentication() {
-        cy
-            .xpath(HomePageLocators.AUTHENTICATION_BUTTON).should('be.visible')
-            .click();
-
+        this.clickButton(HomePageLocators.AUTHENTICATION_BUTTON);
         return this;
     }
 
     
     static clickSignOutButton() {
-        cy
-            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
-            .click()
-            
+        this.clickButton(HomePageLocators.SIGN_OUT_BUTTON);
         return this;
     }
         
     static validateUserIsLoggedIn(user: UserInfo) {
-        cy
-            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible');
+        this.expectElementToBeVisible(HomePageLocators.SIGN_OUT_BUTTON);
 
-        cy
-            .xpath(HomePageLocators.MY_ACCOUNT_SIGNED_IN_BUTTON).should('be.visible')
-            .contains(user.getFirstName() + ' ' + user.getLastName());
+        const userFullName = user.getFirstName() + ' ' + user.getLastName();
+        this.expectTextInElement(HomePageLocators.MY_ACCOUNT_SIGNED_IN_BUTTON, userFullName);
 
         return this;
     }
 
     static validateUserIsNotLoggedIn() {
-        cy
-            .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('not.exist');
-
-        cy    
-            .xpath(HomePageLocators.AUTHENTICATION_BUTTON).should('be.visible');
-
+        this.expectElementToBeVisible(HomePageLocators.AUTHENTICATION_BUTTON);
+        this.expectElementToNotExist(HomePageLocators.SIGN_OUT_BUTTON);
         return this;
     }
 }

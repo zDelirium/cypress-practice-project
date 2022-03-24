@@ -1,92 +1,67 @@
 import { AuthenticationPageLocators } from "../constants/locators/AuthenticationPageLocators";
+import BasePage from "./BasePage";
 
-export default class AuthenticationPage {    
+export default class AuthenticationPage extends BasePage {    
     
-    static fillCreateAccountEmail(email: string) {
-        cy
-            .xpath(AuthenticationPageLocators.CREATE_ACCOUNT_EMAIL_TEXT_FIELD)
-            .should('be.visible').should('be.enabled')
-            .clear().type(email);
-
+    static enterCreateAccountEmail(email: string) {
+        AuthenticationPage.fillTextInTextField(AuthenticationPageLocators.CREATE_ACCOUNT_EMAIL_TEXT_FIELD, email);
         return this;
     }
 
     static clickCreateAccountButton() {
-        cy
-            .xpath(AuthenticationPageLocators.CREATE_ACCOUNT_BUTTON)
-            .should('be.visible').should('be.enabled')
-            .click();
-        
+        this.clickButton(AuthenticationPageLocators.CREATE_ACCOUNT_BUTTON);
         return this;
     }
     
-    static fillSignInEmail(email: string) {
-        cy
-            .xpath(AuthenticationPageLocators.SIGN_IN_EMAIL_TEXT_FIELD)
-            .should('be.visible').should('be.enabled')
-            .clear().type(email);
-        
+    static enterSignInEmail(email: string) {
+        this.fillTextInTextField(AuthenticationPageLocators.SIGN_IN_EMAIL_TEXT_FIELD, email);
         return this;
     }
     
-    static fillSignInPassword(password: string) {
-        cy
-            .xpath(AuthenticationPageLocators.SIGN_IN_PASSWORD_TEXT_FIELD)
-            .should('be.visible').should('be.enabled')
-            .clear().type(password);
-        
+    static enterSignInPassword(password: string) {
+        this.fillTextInTextField(AuthenticationPageLocators.SIGN_IN_PASSWORD_TEXT_FIELD, password);
         return this;
     }
     
     static clickSignInButton() {
-        cy
-            .xpath(AuthenticationPageLocators.SIGN_IN_BUTTON)
-            .should('be.visible').should('be.enabled')
-            .click()
-        
+        this.clickButton(AuthenticationPageLocators.SIGN_IN_BUTTON);
         return this;
     }
     
     static validateCreateAccountWithInvalidEmailErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.CREATE_ACCOUNT_ERROR_MESSAGE_BOX, 'Invalid email address');
+        this.expectTextInElement(AuthenticationPageLocators.CREATE_ACCOUNT_ERROR_MESSAGE_BOX, 'Invalid email address');
         return this;
     }
 
     static validateCreateAccountWithExistingUserEmailErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.CREATE_ACCOUNT_ERROR_MESSAGE_BOX, 
+        this.expectTextInElement(AuthenticationPageLocators.CREATE_ACCOUNT_ERROR_MESSAGE_BOX, 
             'An account using this email address has already been registered. Please enter a valid password or request a new one.');
         return this;
     }
 
     static validateLoginWithEmptyEmailErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'An email address required');
+        this.expectTextInElement(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'An email address required');
         return this;
     }
     
     static validateLoginWithNonEmptyInvalidEmailErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Invalid email address');
+        this.expectTextInElement(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Invalid email address');
         return this;
     }
     
     static validateLoginWithValidEmailAndEmptyPasswordErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Password is required');
+        this.expectTextInElement(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Password is required');
         return this;
     }
 
     static validateLoginWithValidEmailAndNonEmptyInvalidPasswordErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Invalid password');
+        this.expectTextInElement(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Invalid password');
         return this;
     }
 
     static validateLoginWithValidEmailAndValidWrongPasswordErrorMessage() {
-        AuthenticationPage.validateErrorMessage(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Authentication failed');
+        this.expectTextInElement(AuthenticationPageLocators.SIGN_IN_ERROR_MESSAGE_BOX, 'Authentication failed');
         return this;
     }
     
-    private static validateErrorMessage(errorMessageBoxLocator: string, errorMessage: string) : void {
-        cy
-            .xpath(errorMessageBoxLocator)
-            .should('be.visible')
-            .should('contain.text', errorMessage);
-    }
 }

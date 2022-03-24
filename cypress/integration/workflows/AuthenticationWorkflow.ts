@@ -16,7 +16,7 @@ export default class AuthenticationWorkflow {
         
         // Test with non-empty invalid email
         AuthenticationPage
-            .fillCreateAccountEmail(invalidEmail)
+            .enterCreateAccountEmail(invalidEmail)
             .clickCreateAccountButton()
             .validateCreateAccountWithInvalidEmailErrorMessage();
     }
@@ -27,7 +27,7 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
         
         AuthenticationPage
-            .fillCreateAccountEmail(existingUserEmail)
+            .enterCreateAccountEmail(existingUserEmail)
             .clickCreateAccountButton()
             .validateCreateAccountWithExistingUserEmailErrorMessage();
     }
@@ -38,8 +38,8 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(existingUser.getEmail())
-            .fillSignInPassword(existingUser.getPassword())
+            .enterSignInEmail(existingUser.getEmail())
+            .enterSignInPassword(existingUser.getPassword())
             .clickSignInButton();
         
         HomePage
@@ -62,7 +62,7 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(invalidEmail)
+            .enterSignInEmail(invalidEmail)
             .clickSignInButton()
             .validateLoginWithNonEmptyInvalidEmailErrorMessage();
     }
@@ -73,7 +73,7 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(validEmail)
+            .enterSignInEmail(validEmail)
             .clickSignInButton()
             .validateLoginWithValidEmailAndEmptyPasswordErrorMessage();
     }
@@ -84,8 +84,8 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(validEmail)
-            .fillSignInPassword(invalidPassword)
+            .enterSignInEmail(validEmail)
+            .enterSignInPassword(invalidPassword)
             .clickSignInButton()
             .validateLoginWithValidEmailAndNonEmptyInvalidPasswordErrorMessage();
     }
@@ -96,8 +96,8 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(validEmail)
-            .fillSignInPassword(wrongPassword)
+            .enterSignInEmail(validEmail)
+            .enterSignInPassword(wrongPassword)
             .clickSignInButton()
             .validateLoginWithValidEmailAndValidWrongPasswordErrorMessage();
     }
@@ -109,8 +109,8 @@ export default class AuthenticationWorkflow {
             .goToAuthentication();
 
         AuthenticationPage
-            .fillSignInEmail(email)
-            .fillSignInPassword(password)
+            .enterSignInEmail(email)
+            .enterSignInPassword(password)
             .clickSignInButton();
         
         // Logout

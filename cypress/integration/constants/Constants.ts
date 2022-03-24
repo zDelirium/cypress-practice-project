@@ -1,6 +1,6 @@
 export const AppConstants = {
     HOME_URL : 'http://automationpractice.com/index.php',
-    TIMEOUT : 30 * 1000,
+    TIMEOUT : 15 * 1000,
     DROPDOWN_INVALID_VALUE : '-'
 } as const;
 
