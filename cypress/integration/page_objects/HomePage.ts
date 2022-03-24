@@ -37,16 +37,15 @@ export default class HomePage {
             .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible')
             .click()
             
-            return this;
-        }
+        return this;
+    }
         
     static validateUserIsLoggedIn(user: UserInfo) {
         cy
             .xpath(HomePageLocators.SIGN_OUT_BUTTON).should('be.visible');
 
         cy
-            .xpath(HomePageLocators.MY_ACCOUNT_SIGNED_IN_BUTTON)
-            .should('be.visible')
+            .xpath(HomePageLocators.MY_ACCOUNT_SIGNED_IN_BUTTON).should('be.visible')
             .contains(user.getFirstName() + ' ' + user.getLastName());
 
         return this;
