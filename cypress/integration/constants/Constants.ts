@@ -1,6 +1,6 @@
 export const AppConstants = {
     HOME_URL : 'http://automationpractice.com/index.php',
-    TIMEOUT : 15 * 1000,
+    TIMEOUT : 20 * 1000,
     DROPDOWN_INVALID_VALUE : '-'
 } as const;
 
@@ -18,5 +18,6 @@ export const RandomUserUtilsConstants = {
     INVALID_PASSWORD_MAX_LENGTH : 4,
     VALID_ZIP_CODE_FORMAT : '#####',
     INVALID_ZIP_CODE_MIN_VALUE : 0,
-    INVALID_ZIP_CODE_MAX_VALUE : 9999999999
+    INVALID_ZIP_CODE_MAX_VALUE : 9999999999,
+    VALID_PHONE_NUMBER_FORMAT : '###-###-####'
 } as const;

@@ -6,11 +6,14 @@ export default class BasePage {
         cy
             .xpath(textFieldLocator, {timeout : AppConstants.TIMEOUT})
             .should('be.visible').and('be.enabled')
-            .clear().type(text);
+            .clear().type(text, { parseSpecialCharSequences: false });
     }
 
     protected static selectOptionInDropdown(dropdownLocator: string, selectedOption: string) : void {
-        throw new Error('Method not implemented');
+        cy
+            .xpath(dropdownLocator, { timeout : AppConstants.TIMEOUT })
+            .should('exist').and('be.enabled')
+            .select(selectedOption);
     }
 
     protected static clickButton(buttonLocator: string) : void {

@@ -73,7 +73,7 @@ export default class RandomUserInfoUtils {
 
     // For the sake of simplicity, simply add a question mark in front
     static getInvalidCity() : string {
-        return '?' + faker.address.city;
+        return '?' + faker.address.streetAddress();
     }
 
     // State
@@ -114,11 +114,11 @@ export default class RandomUserInfoUtils {
     }
 
     // phone number (mobile and home)
-    static getMobilePhoneNumber() : string {
-        return faker.phone.phoneNumber();
+    static getValidPhoneNumber() : string {
+        return faker.phone.phoneNumber(RandomUserUtilsConstants.VALID_PHONE_NUMBER_FORMAT);
     }
 
-    static getInvalidMobilePhoneNumber() : string {
+    static getInvalidPhoneNumber() : string {
         return faker.random.words();
     }
 
