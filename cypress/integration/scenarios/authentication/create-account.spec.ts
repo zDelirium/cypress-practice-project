@@ -5,7 +5,7 @@ import {
     getNewUserWithValidEmailAndOtherNonEmptyInvalidInfo, 
     getNewUserWithValidInfo 
 } from "../../utils/UserUtils";
-import AuthenticationWorkflow from "../../workflows/AuthenticationWorkflow";
+import CreateAccountWorkflow from "../../workflows/authentication/CreateAccountWorkflow";
 
 describe('Create account', () => {
 
@@ -22,77 +22,77 @@ describe('Create account', () => {
     })
 
     it('Attempt create account with invalid (can be empty) string' , function() {
-        AuthenticationWorkflow.createAccountWithInvalidEmail(RandomUserInfoUtils.getInvalidEmail());
+        CreateAccountWorkflow.createAccountWithInvalidEmail(RandomUserInfoUtils.getInvalidEmail());
     });
 
     it('Attempt create account with existing user email', function() {
-        AuthenticationWorkflow.createAccountWithExistingUserEmail(existingUser.getEmail());
+        CreateAccountWorkflow.createAccountWithExistingUserEmail(existingUser.getEmail());
     });
 
     it('Attempt create account with valid email and all default fields', function() {
-        AuthenticationWorkflow.createAccountWithValidEmailAndDefaultFields(newUserWithValidInfo);
+        CreateAccountWorkflow.createAccountWithValidEmailAndDefaultFields(newUserWithValidInfo);
     })
 
     it('Attempt create account with valid email and invalid first name', function() {
-        AuthenticationWorkflow.createAccountWithInvalidFirstName(
+        CreateAccountWorkflow.createAccountWithInvalidFirstName(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidFirstName()
         );
     });
 
     it('Attempt create account with valid email and invalid last name', function() {
-        AuthenticationWorkflow.createAccountWithInvalidLastName(
+        CreateAccountWorkflow.createAccountWithInvalidLastName(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidLastName()
         );
     });
 
     it('Attempt create account with valid email and invalid password name', function() {
-        AuthenticationWorkflow.createAccountWithInvalidPassword(
+        CreateAccountWorkflow.createAccountWithInvalidPassword(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidPassword()
         );
     });
 
     it('Attempt create account with valid email and invalid address', function() {
-        AuthenticationWorkflow.createAccountWithInvalidAddress(
+        CreateAccountWorkflow.createAccountWithInvalidAddress(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidAddress()
         );
     });
 
     it('Attempt create account with valid email and invalid city', function() {
-        AuthenticationWorkflow.createAccountWithInvalidCity(
+        CreateAccountWorkflow.createAccountWithInvalidCity(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidCity()
         );
     });
     
     it('Attempt create account with valid email and invalid state', function() {
-        AuthenticationWorkflow.createAccountWithInvalidState(
+        CreateAccountWorkflow.createAccountWithInvalidState(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidState()
         );
     });
 
     it('Attempt create account with valid email and invalid zip code', function() {
-        AuthenticationWorkflow.createAccountWithInvalidZipCode(
+        CreateAccountWorkflow.createAccountWithInvalidZipCode(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidFormatZipCode(), RandomUserInfoUtils.getInvalidZipCode()
         );
     });
 
     it('Attempt create account with valid email and invalid country', function() {
-        AuthenticationWorkflow.createAccountWithInvalidCountry(
+        CreateAccountWorkflow.createAccountWithInvalidCountry(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidCountry()
         );
     });
 
     it('Attempt create account with valid email and invalid mobile phone number', function() {
-        AuthenticationWorkflow.createAccountWithInvalidMobilePhoneNumber(
+        CreateAccountWorkflow.createAccountWithInvalidMobilePhoneNumber(
             newUserWithValidInfo, RandomUserInfoUtils.getInvalidPhoneNumber()
         );
     });
 
     it('Attempt create account with valid email and multiple invalid other info', function() {
-        AuthenticationWorkflow.createAccountWithValidEmailAndMultipleInvalidInfo(newUserWithValidEmailAndInvalidInfo);
+        CreateAccountWorkflow.createAccountWithValidEmailAndMultipleInvalidInfo(newUserWithValidEmailAndInvalidInfo);
     })
 
     it('Create new account successfully', function() {
-        AuthenticationWorkflow.createAccountSuccess(newUserWithValidInfo);
+        CreateAccountWorkflow.createAccountSuccess(newUserWithValidInfo);
     });
     
 })

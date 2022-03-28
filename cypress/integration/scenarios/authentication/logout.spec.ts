@@ -1,6 +1,6 @@
 import UserInfo from "../../utils/UserInfo";
 import { getExistingUser } from "../../utils/UserUtils";
-import AuthenticationWorkflow from "../../workflows/AuthenticationWorkflow";
+import LogoutWorkflow from "../../workflows/authentication/LogoutWorkflow";
 
 describe('Logout', () => {
 
@@ -11,6 +11,6 @@ describe('Logout', () => {
     });
 
     it('Logged-in user should be able to logout', function() {
-        AuthenticationWorkflow.logout(existingUser.getEmail(), existingUser.getPassword());
+        LogoutWorkflow.logout(existingUser.getEmail(), existingUser.getPassword());
     });
 })

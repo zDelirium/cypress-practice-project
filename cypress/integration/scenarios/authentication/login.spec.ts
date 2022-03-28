@@ -1,7 +1,7 @@
 import RandomUserInfoUtils from "../../utils/RandomUserInfoUtils";
 import UserInfo from "../../utils/UserInfo";
 import { getExistingUser } from "../../utils/UserUtils";
-import AuthenticationWorkflow from "../../workflows/AuthenticationWorkflow";
+import LoginWorkflow from "../../workflows/authentication/LoginWorkflow";
 
 describe('Login', () => {
  
@@ -12,29 +12,29 @@ describe('Login', () => {
     }); 
 
     it('Attempt login with an empty email', function() {
-        AuthenticationWorkflow.loginWithEmptyEmail();
+        LoginWorkflow.loginWithEmptyEmail();
     });
 
     it('Attempt login with a non-empty invalid email', function() {
-        AuthenticationWorkflow.loginWithNonEmptyInvalidEmail(RandomUserInfoUtils.getInvalidEmail());
+        LoginWorkflow.loginWithNonEmptyInvalidEmail(RandomUserInfoUtils.getInvalidEmail());
     });
 
     it('Attempt login with valid email but empty password', function() {
-        AuthenticationWorkflow.loginWithValidEmailAndEmptyPassword(RandomUserInfoUtils.getValidEmail());
+        LoginWorkflow.loginWithValidEmailAndEmptyPassword(RandomUserInfoUtils.getValidEmail());
     });
 
     it('Attempt login with valid email but non-empty invalid password', function() {
-        AuthenticationWorkflow.loginWithValidEmailAndNonEmptyInvalidPassword(
+        LoginWorkflow.loginWithValidEmailAndNonEmptyInvalidPassword(
             RandomUserInfoUtils.getValidEmail(), RandomUserInfoUtils.getInvalidPassword());
     });
 
     it('Attempt login with valid existing email but valid wrong password', function() {
-        AuthenticationWorkflow.loginWithValidEmailAndValidWrongPassword(
+        LoginWorkflow.loginWithValidEmailAndValidWrongPassword(
             existingUser.getEmail(), RandomUserInfoUtils.getValidPassword(existingUser.getPassword()));
     });
 
     it('Login successfully with existing user email and password', function() {
-        AuthenticationWorkflow.loginWithValidCredentials(existingUser);
+        LoginWorkflow.loginWithValidCredentials(existingUser);
     });
 
 })

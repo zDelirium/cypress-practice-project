@@ -1,10 +1,9 @@
-import AuthenticationPage from "../page_objects/AuthenticationPage";
-import CreateAccountPage from "../page_objects/CreateAccountPage";
-import HomePage from "../page_objects/HomePage";
-import UserInfo from "../utils/UserInfo";
+import AuthenticationPage from "../../page_objects/AuthenticationPage";
+import CreateAccountPage from "../../page_objects/CreateAccountPage";
+import HomePage from "../../page_objects/HomePage";
+import UserInfo from "../../utils/UserInfo";
 
-// TODO Refactor into multiple files cuz this looks like a damn mess
-export default class AuthenticationWorkflow {
+export default class CreateAccountWorkflow {
 
     static createAccountWithInvalidEmail(invalidEmail: string) {
         HomePage
@@ -403,93 +402,6 @@ export default class AuthenticationWorkflow {
 
         HomePage
             .validateUserIsLoggedIn(newUser);
-    }
-
-    static loginWithValidCredentials(existingUser: UserInfo) {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(existingUser.getEmail())
-            .enterSignInPassword(existingUser.getPassword())
-            .clickSignInButton();
-        
-        HomePage
-            .validateUserIsLoggedIn(existingUser);
-    }
-
-    static loginWithEmptyEmail() {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .clickSignInButton()
-            .validateLoginWithEmptyEmailErrorMessage();
-    }
-
-    static loginWithNonEmptyInvalidEmail(invalidEmail: string) {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(invalidEmail)
-            .clickSignInButton()
-            .validateLoginWithNonEmptyInvalidEmailErrorMessage();
-    }
-
-    static loginWithValidEmailAndEmptyPassword(validEmail: string) {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(validEmail)
-            .clickSignInButton()
-            .validateLoginWithValidEmailAndEmptyPasswordErrorMessage();
-    }
-
-    static loginWithValidEmailAndNonEmptyInvalidPassword(validEmail: string, invalidPassword: string) {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(validEmail)
-            .enterSignInPassword(invalidPassword)
-            .clickSignInButton()
-            .validateLoginWithValidEmailAndNonEmptyInvalidPasswordErrorMessage();
-    }
-
-    static loginWithValidEmailAndValidWrongPassword(validEmail: string, wrongPassword: string) {
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(validEmail)
-            .enterSignInPassword(wrongPassword)
-            .clickSignInButton()
-            .validateLoginWithValidEmailAndValidWrongPasswordErrorMessage();
-    }
-
-    static logout(email: string, password: string) {
-        // Login
-        HomePage
-            .visitWebSite()
-            .goToAuthentication();
-
-        AuthenticationPage
-            .enterSignInEmail(email)
-            .enterSignInPassword(password)
-            .clickSignInButton();
-        
-        // Logout
-        HomePage
-            .clickSignOutButton()
-            .validateUserIsNotLoggedIn();
     }
 
 }
