@@ -71,7 +71,7 @@ describe('Create account', () => {
 
     it('Attempt create account with valid email and invalid zip code', function() {
         AuthenticationWorkflow.createAccountWithInvalidZipCode(
-            newUserWithValidInfo, RandomUserInfoUtils.getInvalidZipCode()
+            newUserWithValidInfo, RandomUserInfoUtils.getInvalidFormatZipCode(), RandomUserInfoUtils.getInvalidZipCode()
         );
     });
 

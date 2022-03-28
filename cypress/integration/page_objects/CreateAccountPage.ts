@@ -120,9 +120,15 @@ export default class CreateAccountPage extends BasePage {
         return this;
     }
 
-    static validateInvalidZipCodeErrorMessage() {
+    static validateInvalidFormatZipCodeErrorMessage() {
         this.expectTextInElement(CreateAccountPageLocators.ERROR_MESSAGE_BOX,
                 "The Zip/Postal code you've entered is invalid. It must follow this format: 00000");
+        return this;
+    }
+
+    static validateTwoInvalidZipCodeErrorMessages() {
+        this.expectTextInElement(CreateAccountPageLocators.ERROR_MESSAGE_BOX, 'postcode is invalid.')
+        this.validateInvalidFormatZipCodeErrorMessage();
         return this;
     }
 

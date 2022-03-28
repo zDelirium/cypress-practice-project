@@ -90,8 +90,8 @@ export default class RandomUserInfoUtils {
         return faker.address.zipCode(RandomUserUtilsConstants.VALID_ZIP_CODE_FORMAT);
     }
 
-    // Not in the format #####
-    static getInvalidZipCode() : string {
+    // Alphanumeric not in the format #####
+    static getInvalidFormatZipCode() : string {
         let invalidZipCode : number;
 
         do {
@@ -101,6 +101,12 @@ export default class RandomUserInfoUtils {
         } while (invalidZipCode.toString().length == RandomUserUtilsConstants.VALID_ZIP_CODE_FORMAT.length);
         
         return invalidZipCode.toString();
+    }
+
+    // With a non-whitespace-alpha numeric character
+    // Simplified 
+    static getInvalidZipCode() : string {
+        return faker.address.zipCode(RandomUserUtilsConstants.VALID_ZIP_CODE_FORMAT) + '.';
     }
 
     // Country

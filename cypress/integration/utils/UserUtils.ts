@@ -34,7 +34,7 @@ export function getNewUserWithValidEmailAndOtherNonEmptyInvalidInfo() : UserInfo
         .lastName(RandomUserInfoUtils.getInvalidLastName())
         .address(RandomUserInfoUtils.getInvalidAddress())
         .city(RandomUserInfoUtils.getInvalidCity())
-        .zipCode(RandomUserInfoUtils.getInvalidZipCode())
+        .zipCode(RandomUserInfoUtils.getInvalidFormatZipCode())
         .mobilePhoneNumber(RandomUserInfoUtils.getInvalidPhoneNumber())
         .build();
 }

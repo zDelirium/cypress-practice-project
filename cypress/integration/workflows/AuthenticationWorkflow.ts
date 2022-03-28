@@ -3,6 +3,7 @@ import CreateAccountPage from "../page_objects/CreateAccountPage";
 import HomePage from "../page_objects/HomePage";
 import UserInfo from "../utils/UserInfo";
 
+// TODO Refactor into multiple files cuz this looks like a damn mess
 export default class AuthenticationWorkflow {
 
     static createAccountWithInvalidEmail(invalidEmail: string) {
@@ -50,7 +51,7 @@ export default class AuthenticationWorkflow {
             .validateEmptyAddressErrorMessage()
             .validateEmptyCityErrorMessage()
             .validateInvalidStateErrorMessage()
-            .validateInvalidZipCodeErrorMessage()
+            .validateInvalidFormatZipCodeErrorMessage()
             .validateEmptyPhoneNumberErrorMessage()
             .validateNumberOfErrorsCreateAccountForm(8);
 
@@ -248,7 +249,7 @@ export default class AuthenticationWorkflow {
 
     }
 
-    static createAccountWithInvalidZipCode(newUser: UserInfo, invalidZipCode: string) {
+    static createAccountWithInvalidZipCode(newUser: UserInfo, invalidFormatZipCode: string, invalidZipCode: string) {
         HomePage
             .visitWebSite()
             .goToAuthentication();
@@ -270,15 +271,24 @@ export default class AuthenticationWorkflow {
 
             // Validate empty zip code error message (same as invalid case)
             .clickRegisterButton()
-            .validateInvalidZipCodeErrorMessage()
+            .validateInvalidFormatZipCodeErrorMessage()
             .validateNumberOfErrorsCreateAccountForm(1)
 
-            // Validate invalid city message
+            // Validate invalid format zip code message
+            .enterZipCode(invalidFormatZipCode)
+            .enterPassword(newUser.getPassword())
+            .clickRegisterButton()
+            .validateInvalidFormatZipCodeErrorMessage()
+            .validateNumberOfErrorsCreateAccountForm(1)
+
+            // Validate invalid format zipcode
             .enterZipCode(invalidZipCode)
             .enterPassword(newUser.getPassword())
             .clickRegisterButton()
-            .validateInvalidZipCodeErrorMessage()
-            .validateNumberOfErrorsCreateAccountForm(1);
+            .validateTwoInvalidZipCodeErrorMessages()
+            .validateNumberOfErrorsCreateAccountForm(2);
+
+
     }
 
     static createAccountWithInvalidCountry(newUser: UserInfo, invalidCountry: string) {
@@ -366,7 +376,7 @@ export default class AuthenticationWorkflow {
             .validateNonEmptyInvalidAddressErrorMessage()
             .validateNonEmptyInvalidCityErrorMessage()
             .validateInvalidStateErrorMessage()
-            .validateInvalidZipCodeErrorMessage()
+            .validateInvalidFormatZipCodeErrorMessage()
             .validateNonEmptyInvalidMobilePhoneNumberErrorMessage();
     }
 
